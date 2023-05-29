@@ -1,42 +1,22 @@
 'use client';
 
+import { appWindow } from '@tauri-apps/api/window'
 import { useCallback } from "react";
 import { Maximize, Minus, X } from 'lucide-react';
+import { app } from '@tauri-apps/api';
 
 const Titlebar: React.FC = () => {
-
-    const minimizeWindow = useCallback(async () => {
-        const { appWindow } = await import("@tauri-apps/plugin-window");
-        appWindow?.minimize();
-    }, [])
-    
-    const maximizeWindow = useCallback(async () => {
-        const { appWindow } = await import("@tauri-apps/plugin-window");
-        const isMaximized = await appWindow?.isMaximized();
-    
-        if (isMaximized) {
-            appWindow?.unmaximize();
-        } else {
-            appWindow?.maximize();
-        }
-    }, [])
-    
-    const closeWindow = useCallback(async () => {
-        const { appWindow } = await import("@tauri-apps/plugin-window");
-        appWindow.close();
-    }, [])
-
     return (
         <div className="flex justify-between items-center h-10 pr-2">
-            <div data-tauri-drag-region className="w-full h-full"></div>
+            <div data-tauri-drag-region className="w-full h-full"/>
             <div className='flex gap-3'>
-                <button onClick={minimizeWindow}>
+                <button onClick={() => appWindow.minimize()}>
                     <Minus/>
                 </button>
-                <button onClick={maximizeWindow}>
+                <button onClick={() => appWindow.toggleMaximize()}>
                     <Maximize/>
                 </button>
-                <button onClick={closeWindow}>
+                <button onClick={() => appWindow.close()}>
                     <X/>
                 </button>
             </div>
