@@ -1,9 +1,7 @@
 'use client';
 
 import { appWindow } from '@tauri-apps/api/window'
-import { useCallback } from "react";
 import { Maximize, Minus, X } from 'lucide-react';
-import { app } from '@tauri-apps/api';
 
 const Titlebar: React.FC = () => {
     return (
