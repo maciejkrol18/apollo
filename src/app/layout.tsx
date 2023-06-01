@@ -1,3 +1,4 @@
+import TailwindIndicator from "@/components/atoms/tailwind-indicator";
 import Titlebar from "../components/organisms/titlebar";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -9,6 +10,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang="en">
       <body className={`overflow-clip ${inter.className}`}>
         <Titlebar/>
+        <TailwindIndicator/>
           <div className="flex flex-col mt-10 gap-24 h-screen overflow-auto">
             <div className="flex gap-32 px-20 grow">
                 <aside className="flex flex-col gap-6 grow max-w-[400px]">
