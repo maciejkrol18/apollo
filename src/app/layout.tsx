@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeftCircle } from 'lucide-react';
 import AppAudio from "@/components/organisms/app-audio";
 import AsideBar from "@/components/organisms/aside-bar";
+import Link from 'next/link'
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -31,7 +32,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 {children}
               </main>
             </div>
-            <div id="audio-player-placeholder" className="w-full grow max-h-[200px] bg-menus-background">Lorem ipsum dolor sit amet.</div>
+            <div id="audio-player-placeholder" className="w-full grow max-h-[200px] bg-menus-background">
+              Lorem, ipsum dolor.
+              <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls/>
+            </div>
           </AppAudio>
         </div>
       </body>

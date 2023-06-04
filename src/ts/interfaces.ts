@@ -15,7 +15,7 @@ export interface PlaylistObject {
     title: string;
     id: string;
     creationDate: Date;
-    coverImgPath: string | StaticImageData;
+    coverImgPath: string;
     userSongOrder: Array<string>
     songs: Array<PlaylistSong>;
 }

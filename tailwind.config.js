@@ -12,6 +12,7 @@ module.exports = {
         "body": "#1C1C1D",
         "menus-background": "#161617",
         "menus-foreground": "#F3F3F3",
+        "menus-foreground-muted": "#676464",
         "menus-background-light": "#2D2D31"
       },
     },
