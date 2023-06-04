@@ -3,19 +3,19 @@
 import TailwindIndicator from "@/components/atoms/tailwind-indicator";
 import Titlebar from "@/components/atoms/titlebar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { ArrowLeftCircle } from 'lucide-react';
 import AppAudio from "@/components/organisms/app-audio";
 import AsideBar from "@/components/organisms/aside-bar";
 
-const inter = Inter({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   const router = useRouter();
   return (
     <html lang="en">
-      <body className={`overflow-clip ${inter.className}`}>
+      <body className={`overflow-clip ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
           <div className="flex flex-col mt-7 gap-14 h-screen overflow-auto">

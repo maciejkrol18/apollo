@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface AppAudioContextValues {
     playlistsArray: Array<PlaylistObject>;
     setPlaylistsArray: React.Dispatch<React.SetStateAction<Array<PlaylistObject>>>
@@ -10,10 +12,10 @@ export interface PlaylistSong {
 }
 
 export interface PlaylistObject {
-    name: string;
+    title: string;
     id: string;
     creationDate: Date;
-    coverImgPath: string;
+    coverImgPath: string | StaticImageData;
     userSongOrder: Array<string>
     songs: Array<PlaylistSong>;
 }
