@@ -3,6 +3,7 @@
 import { AppAudioContext } from "@/contexts/app-audio-context";
 import { AppAudioContextValues } from "@/ts/interfaces";
 import { nanoid } from "nanoid";
+import { useRouter } from "next/navigation";
 import { useParams } from 'next/navigation';
 import { PlusCircle } from "lucide-react"
 import { useContext } from "react";
@@ -12,6 +13,7 @@ import PlaylistBox from "../atoms/playlist-box";
 const PlaylistsPanel: React.FC = () => {
 
     const {id} = useParams()
+    const router = useRouter()
 
     const { playlistsArray, setPlaylistsArray } = useContext(AppAudioContext) as AppAudioContextValues
 
@@ -30,6 +32,7 @@ const PlaylistsPanel: React.FC = () => {
                 ...prevPlaylists
             ]
         })
+        router.push(`/playlists/${randomID}`)
     }
 
     return (
