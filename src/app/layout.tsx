@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { ArrowLeftCircle } from 'lucide-react';
 import AppAudio from "@/components/organisms/app-audio";
 import AsideBar from "@/components/organisms/aside-bar";
-import Link from 'next/link'
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
