@@ -67,6 +67,7 @@
         "resizable": true,
         "title": "Apollo",
         "width": 1300,
+        "minWidth": 0,
         "decorations": false,
         "transparent": true
       }
