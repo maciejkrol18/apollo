@@ -1,7 +1,7 @@
 "use client";
 
 import TailwindIndicator from "@/components/atoms/tailwind-indicator";
-import Titlebar from "../components/organisms/titlebar";
+import Titlebar from "@/components/atoms/titlebar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/navigation";
