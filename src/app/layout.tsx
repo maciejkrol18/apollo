@@ -15,14 +15,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   const router = useRouter();
   return (
     <html lang="en">
-      <body className={`overflow-clip ${plusJakartaSans.className}`}>
+      <body className={`overflow-clip text-menus-foreground bg-body ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
           <div className="flex flex-col mt-7 gap-14 h-screen overflow-auto">
           <AppAudio>
             <div className="flex grow gap-8 px-4">
               <AsideBar/>
-              <main className="flex flex-col rounded-2xl grow bg-[#161617] p-8">
+              <main className="flex flex-col rounded-2xl grow bg-menus-background p-8">
                 <div className="w-full mb-4">
                   <button onClick={() => router.back()}>
                     <ArrowLeftCircle className="text-slate-700 h-10 w-10"/>
@@ -31,7 +31,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 {children}
               </main>
             </div>
-            <div id="audio-player-placeholder" className="w-full grow max-h-[200px] bg-[#161617]">Lorem ipsum dolor sit amet.</div>
+            <div id="audio-player-placeholder" className="w-full grow max-h-[200px] bg-menus-background">Lorem ipsum dolor sit amet.</div>
           </AppAudio>
         </div>
       </body>

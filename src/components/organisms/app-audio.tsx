@@ -1,30 +1,11 @@
 import { AppAudioContext } from "@/contexts/app-audio-context";
 import { PlaylistObject } from "@/ts/interfaces";
-import PlaylistDefaultCover from "@/assets/default-playlist-cover.png"
-import { nanoid } from "nanoid";
 import { useState, useEffect } from 'react';
 
 const AppAudio = ({children}: {children: React.ReactNode}) => {
     const [playlistsArray, setPlaylistsArray] = useState<Array<PlaylistObject>>(
         JSON.parse(localStorage.getItem("apollo-playlists") || '[]')
     )
-
-    const createNewPlaylist = () => {
-        const randomID = nanoid();
-        setPlaylistsArray((prevPlaylists) => {
-            return [
-                {
-                    title: 'My playlist',
-                    id: randomID,
-                    creationDate: new Date(),
-                    coverImgPath: PlaylistDefaultCover.src,
-                    userSongOrder: [],
-                    songs: []
-                },
-                ...prevPlaylists
-            ]
-        })
-    }
 
     useEffect(() => {
         localStorage.setItem("apollo-playlists", JSON.stringify(playlistsArray))
@@ -36,8 +17,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         <AppAudioContext.Provider
             value={{
                 playlistsArray,
-                setPlaylistsArray,
-                createNewPlaylist
+                setPlaylistsArray
             }}
         >
             {children}
