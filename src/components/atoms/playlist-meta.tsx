@@ -14,7 +14,7 @@ const PlaylistMeta: React.FC<PlaylistMetaProps> = ({title, creationDate, songsAm
 
     return (
         <div className="flex flex-col">
-            <h1 className="text-4xl leading font-semibold">{title}</h1>
+            <h1 className="text-3xl font-bold">{title}</h1>
             <div className="flex flex-col text-lg mt-3 text-menus-foreground-muted">
                 <p className="flex items-center gap-2">
                     <Clock className="h-4 w-4"/> Created on {formattedCreationDate}
