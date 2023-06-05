@@ -18,7 +18,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body className={`overflow-clip text-menus-foreground bg-body ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
-          <div className="flex flex-col mt-7 gap-14 h-screen overflow-auto">
+          <div className="flex flex-col gap-14 justify-between mt-7 h-screen overflow-auto">
           <AppAudio>
             <div className="flex grow gap-8 px-4">
               <AsideBar/>
