@@ -8,10 +8,11 @@ interface PlaylistHeaderProps {
     creationDate: Date | undefined;
     songsAmount: number | undefined;
     id: string | undefined;
+    playlistsArray: Array<PlaylistObject>
     setPlaylistsArray: React.Dispatch<React.SetStateAction<PlaylistObject[]>>
 }
 
-const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({coverImgPath, title, creationDate, songsAmount, id, setPlaylistsArray}) => {
+const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({coverImgPath, title, creationDate, songsAmount, id, playlistsArray, setPlaylistsArray}) => {
     return (
         <header className="flex gap-7">
             <img className="w-[200px] h-[200px] drop-shadow-xl rounded-lg" src={coverImgPath}/>
@@ -23,6 +24,7 @@ const PlaylistHeader: React.FC<PlaylistHeaderProps> = ({coverImgPath, title, cre
                     id={id}
                 />
                 <PlaylistControls
+                    playlistsArray={playlistsArray}
                     setPlaylistsArray={setPlaylistsArray}
                     id={id}
                 />
