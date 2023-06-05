@@ -1,12 +1,14 @@
-import { PlaylistObject, PlaylistSong } from "@/ts/interfaces"
-import { PlayCircle, PlusCircle } from "lucide-react"
+import { PlaylistObject } from "@/ts/interfaces"
+import { Edit, PlayCircle, PlusCircle } from "lucide-react"
 import { open } from '@tauri-apps/api/dialog';
 import { nanoid } from "nanoid";
 import { convertFileSrc } from '@tauri-apps/api/tauri';
 import { basename, resolveResource, audioDir } from '@tauri-apps/api/path';
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import Modal from "./modal";
 
 interface PlaylistControlsProps {
+    playlistsArray: Array<PlaylistObject>
     setPlaylistsArray: React.Dispatch<React.SetStateAction<PlaylistObject[]>>;
     id: string | undefined;
 }
@@ -26,9 +28,8 @@ const getFilesFromDialog = async () => {
             selection.map(async (entry) => {
                 const resource = await resolveResource(entry)
                 const base = await basename(resource)
-    
                 return {
-                    title: base,
+                    title: base.substring(0, base.length - 4),
                     convertedFilepath: convertFileSrc(entry),
                     id: nanoid()
                 }
@@ -37,7 +38,10 @@ const getFilesFromDialog = async () => {
     }
 }
 
-const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, id}) => {
+const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setPlaylistsArray, id}) => {
+
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+    const targetPlaylist = playlistsArray.find(playlist => playlist.id === id)
 
     const addSongsToPlaylist = useCallback(async () => {
         const songs = await getFilesFromDialog()
@@ -57,6 +61,10 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
         }
     },[])
 
+    const modalContent = (
+        <p>test</p>
+    )
+
     return (
         <div className="flex gap-4 text-brand">
             <button>
@@ -65,6 +73,17 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
             <button onClick={() => addSongsToPlaylist()}>
                 <PlusCircle className="w-10 h-10"/>
             </button>
+            <button onClick={() => setIsModalOpen(prev => !prev)}>
+                <Edit className="w-10 h-10"/>
+            </button>
+            {
+                isModalOpen && 
+                <Modal 
+                    title={`Editing ${targetPlaylist?.title}`}
+                    content={modalContent} 
+                    toggleModal={setIsModalOpen}
+                />
+            }
         </div>
     )
 }
