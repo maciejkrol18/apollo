@@ -1,6 +1,5 @@
 "use client";
 
-import PlaylistMeta from "@/components/atoms/playlist-meta";
 import PlaylistHeader from "@/components/molecules/playlist-header";
 import { AppAudioContext } from "@/contexts/app-audio-context";
 import { AppAudioContextValues } from "@/ts/interfaces";
@@ -21,18 +20,14 @@ const PlaylistPage: React.FC = () => {
     return (
         <div className="grow">
             <PlaylistHeader
-                title={targetPlaylist?.title}
-                coverImgPath={targetPlaylist?.coverImgPath}
-                creationDate={targetPlaylist?.creationDate}
-                songsAmount={targetPlaylist?.songs.length}
-                id={targetPlaylist?.id}
+                targetPlaylist={targetPlaylist}
                 playlistsArray={playlistsArray}
                 setPlaylistsArray={setPlaylistsArray}
             />
             <div className="flex flex-col mt-10">
                 {
-                    targetPlaylist?.songs.map((song) => (
-                        <div>
+                    targetPlaylist?.songs.map((song,idx) => (
+                        <div key={idx}>
                             <p className="font-bold text-lg">{song.title}</p>
                             <p className="font-light">{song.convertedFilepath}</p>
                         </div>

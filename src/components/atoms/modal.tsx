@@ -1,3 +1,4 @@
+import { XCircle } from "lucide-react";
 import { Portal } from "react-portal"
 
 interface ModalProps {
@@ -11,13 +12,16 @@ const Modal: React.FC<ModalProps> = ({title, content, toggleModal}) => {
         <Portal>
             <div
                 onClick={() => toggleModal(prev => !prev)}
-                className="inset-0 fixed bg-[#00000090] backdrop-blur-sm z-10"
-            >
-            <div className="inset-0 fixed mx-auto w-32 h-32 z-20">
-                <div className="w-96 h-fit bg-red-700">
-                    <h1>Lorem ipsum dolor sit amet.</h1>
+                className="inset-0 fixed bg-[#00000090] backdrop-blur-sm z-[9999]"
+            />
+            <div className="inset-0 fixed m-auto max-w-[800px] h-fit p-8 rounded-2xl bg-menus-background drop-shadow-2xl z-[9999]">
+                <div className="flex justify-between items-center mb-10">
+                    <h1 className="text-2xl font-semibold">{title}</h1>
+                    <button className="text-menus-foreground-muted" onClick={() => toggleModal(prev => !prev)}>
+                        <XCircle className="w-8 h-8"/>
+                    </button>
                 </div>
-            </div>
+                {content}
             </div>
         </Portal>
     )
