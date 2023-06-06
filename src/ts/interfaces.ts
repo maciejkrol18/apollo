@@ -8,6 +8,7 @@ export interface AppAudioContextValues {
 export interface PlaylistSong {
     title: string;
     convertedFilepath: string;
+    lengthInSeconds: number;
     id: string;
 }
 

@@ -6,6 +6,7 @@ import { convertFileSrc } from '@tauri-apps/api/tauri';
 import { basename, resolveResource, audioDir } from '@tauri-apps/api/path';
 import { useCallback, useState } from "react";
 import Modal from "./modal";
+import { invoke } from '@tauri-apps/api/tauri'
 
 interface PlaylistControlsProps {
     playlistsArray: Array<PlaylistObject>
@@ -28,9 +29,11 @@ const getFilesFromDialog = async () => {
             selection.map(async (entry) => {
                 const resource = await resolveResource(entry)
                 const base = await basename(resource)
+                const length = await invoke('get_audio_file_duration', { filepath: entry }).then((res: any) => res)
                 return {
                     title: base.substring(0, base.length - 4),
                     convertedFilepath: convertFileSrc(entry),
+                    lengthInSeconds: length,
                     id: nanoid()
                 }
             })
