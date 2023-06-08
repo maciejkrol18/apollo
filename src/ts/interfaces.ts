@@ -9,6 +9,7 @@ export interface PlaylistSong {
     title: string;
     convertedFilepath: string;
     lengthInSeconds: number;
+    dateAdded: Date;
     id: string;
 }
 

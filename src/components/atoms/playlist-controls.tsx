@@ -36,6 +36,7 @@ const getFilesFromDialog = async () => {
                     title: base.substring(0, base.length - 4),
                     convertedFilepath: convertFileSrc(entry),
                     lengthInSeconds: length,
+                    dateAdded: new Date(),
                     id: nanoid()
                 }
             })
