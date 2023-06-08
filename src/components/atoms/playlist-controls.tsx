@@ -7,6 +7,7 @@ import { basename, resolveResource, audioDir } from '@tauri-apps/api/path';
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { invoke } from '@tauri-apps/api/tauri';
+import Image from "next/image"
 import Modal from "./modal";
 
 interface PlaylistControlsProps {
@@ -104,7 +105,12 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setP
 
     const modalContent = (
         <div className="flex gap-4">
-            <img className="w-64 h-64" src={targetPlaylist?.coverImgPath}/>
+            <Image 
+                width={256}
+                height={256}
+                alt={`${targetPlaylist?.title} cover image`}
+                src={targetPlaylist?.coverImgPath as string}
+            />
             <form className="flex flex-col justify-between" onSubmit={(e) => handleFormSubmit(e)}>
                 <div className="flex flex-col gap-2">
                     <input 

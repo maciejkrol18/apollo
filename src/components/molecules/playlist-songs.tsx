@@ -17,6 +17,7 @@ const PlaylistSongs: React.FC<PlaylistSongsProps> = ({targetPlaylist}) => {
             </tr>
             {targetPlaylist?.songs.map((song, idx) => (
                 <PlaylistEntry
+                    key={idx}
                     title={song.title}
                     convertedFilepath={song.convertedFilepath}
                     lengthInSeconds={song.lengthInSeconds}

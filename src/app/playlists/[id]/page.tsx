@@ -17,7 +17,7 @@ const PlaylistPage: React.FC = () => {
 
     useEffect(() => {
         setTargetPlaylist(playlistsArray.find((playlist) => playlist.id === id))
-    },[playlistsArray])
+    },[playlistsArray,id])
 
     return (
         <div className="grow">

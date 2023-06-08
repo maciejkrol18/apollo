@@ -1,4 +1,5 @@
 import { PlaylistObject } from "@/ts/interfaces";
+import Image from "next/image"
 import PlaylistMeta from "../atoms/playlist-meta"
 import PlaylistControls from "../atoms/playlist-controls";
 
@@ -13,7 +14,13 @@ const PlaylistHeader: React.FC<PlaylistHeaderProps> = (
 ) => {
     return (
         <header className="flex gap-7">
-            <img className="w-[200px] h-[200px] drop-shadow-xl rounded-lg" src={targetPlaylist?.coverImgPath}/>
+            <Image 
+                width={200}
+                height={200}
+                className="drop-shadow-xl rounded-lg" 
+                src={targetPlaylist?.coverImgPath as string}
+                alt={`${targetPlaylist?.title} cover image`}
+            />
             <div className="flex flex-col justify-between">
                 <PlaylistMeta
                     title={targetPlaylist?.title}
