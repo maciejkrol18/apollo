@@ -61,7 +61,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; audio-src 'self' asset: https://asset.localhost"
     },
     "updater": {
       "active": false
