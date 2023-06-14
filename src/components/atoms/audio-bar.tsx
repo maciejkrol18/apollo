@@ -4,12 +4,12 @@ import { Pause, PlayIcon } from "lucide-react"
 import { useContext } from "react"
 
 const AudioBar: React.FC = () => {
-    const {togglePlayback, isAudioPlaying} = useContext(AppAudioContext) as AppAudioContextValues
+    const {currentSong, togglePlayback, isAudioPlaying} = useContext(AppAudioContext) as AppAudioContextValues
     return (
-        <div className="flex items-center justify-center w-full grow max-h-[200px] bg-menus-background">
+        <div className="flex items-center justify-center grow max-h-[200px] bg-menus-background">
             <div className="flex flex-col">
                 <div className="flex gap-3">
-                    <button onClick={() => togglePlayback()}>
+                    <button disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
                         {
                             isAudioPlaying ?
                             <Pause className="w-6 h-6"/>
@@ -19,6 +19,7 @@ const AudioBar: React.FC = () => {
                     </button>
                 </div>
             </div>
+            <p className="text-xl text-center font-bold">{currentSong?.title}</p>
         </div>
     )
 }

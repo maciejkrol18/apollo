@@ -6,6 +6,9 @@ export interface AppAudioContextValues {
     setPlaylistsArray: React.Dispatch<React.SetStateAction<Array<PlaylistObject>>>;
     togglePlayback: () => void;
     isAudioPlaying: boolean;
+    currentSong: PlaylistSong | null;
+    setCurrentSong: React.Dispatch<React.SetStateAction<PlaylistSong | null>>;
+    setCurrentPlaylist: React.Dispatch<React.SetStateAction<PlaylistObject | null>>;
 }
 
 export interface PlaylistSong {
