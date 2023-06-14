@@ -34,7 +34,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         audioElementRef.current.crossOrigin = 'anonymous' // For some reason required
         audioElementRef.current.src = debugAudio
 
-        audioElementRef.current.onended = () => togglePlayback()
+        audioElementRef.current.onended = () => setIsAudioPlaying(false)
 
         audioSourceRef.current.connect(audioCtxRef.current.destination)
         audioGainRef.current.connect(audioCtxRef.current.destination)
