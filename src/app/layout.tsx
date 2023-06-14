@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeftCircle } from 'lucide-react';
 import AppAudio from "@/components/organisms/app-audio";
 import AsideBar from "@/components/organisms/aside-bar";
+import AudioBar from "@/components/atoms/audio-bar";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -18,9 +19,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body className={`overflow-clip text-menus-foreground bg-body ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
-          <div className="flex flex-col gap-14 justify-between mt-7 h-screen overflow-auto">
+          <div className="flex flex-col gap-14 justify-between mt-7 min-h-screen overflow-auto">
           <AppAudio>
-            <div className="flex grow gap-8 px-4 max-h-[784px]">
+            <div className="flex grow gap-8 px-4 max-h-[664px]">
               <AsideBar/>
               <main className="flex flex-col rounded-2xl grow bg-menus-background p-8">
                 <div className="w-full mb-4">
@@ -31,10 +32,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 {children}
               </main>
             </div>
-            <div id="audio-player-placeholder" className="w-full grow max-h-[200px] bg-menus-background">
-              Lorem, ipsum dolor.
-              <audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls/>
-            </div>
+            <AudioBar/>
           </AppAudio>
         </div>
       </body>
