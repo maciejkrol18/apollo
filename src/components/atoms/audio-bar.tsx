@@ -39,7 +39,6 @@ const AudioBar: React.FC = () => {
         if (currentPlaylist && currentSong) {
             const currentSongIndex = currentPlaylist.songs.indexOf(currentSong)
             if (currentSongIndex - 1 === -1) {
-                console.log('gowno')
                 setCurrentSong(currentPlaylist.songs[currentPlaylist.songs.length - 1])
             } else {
                 setCurrentSong(currentPlaylist.songs[currentSongIndex - 1])
