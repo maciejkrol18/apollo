@@ -8,8 +8,6 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         JSON.parse(localStorage.getItem("apollo-playlists") || '[]')
     )
 
-    console.log('AppAudio is re-rendering.')
-
     const wasAudioInitialized = useRef(false)
     const audioCtxRef = useRef<AudioContext | null>(null)
     const audioElementRef = useRef<HTMLAudioElement | null>(null)
@@ -21,10 +19,8 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
     const [shouldAutoplay, setShouldAutoplay] = useState<boolean>(false)
     const [currentSong, setCurrentSong] = useState<PlaylistSong | null>(null)
     const [currentPlaylist, setCurrentPlaylist] = useState<PlaylistObject | null>(null)
-    const [audioEnded, setAudioEnded] = useState(false)
-
-    console.log('Current song:', currentSong)
-    console.log('Current playlist:', currentPlaylist)
+    const [audioEnded, setAudioEnded] = useState<boolean>(false)
+    const [audioCurrentTime, setAudioCurrentTime] = useState<number | undefined>(0)
 
     // Save playlist changes to local storage
     useEffect(() => {
@@ -45,11 +41,18 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         audioElementRef.current.autoplay = shouldAutoplay
 
         audioElementRef.current.onended = () => setAudioEnded(true)
+        audioElementRef.current.ontimeupdate = () => {
+            if (audioElementRef.current?.currentTime !== undefined) {
+                setAudioCurrentTime(Math.round(audioElementRef.current?.currentTime))
+            } else {
+                setAudioCurrentTime(0)
+            }
+        }
 
         audioSourceRef.current.connect(audioCtxRef.current.destination)
         audioGainRef.current.connect(audioCtxRef.current.destination)
 
-        audioGainRef.current.gain.value = 0.3
+        audioGainRef.current.gain.value = 0.001
 
         return () => {
             if (audioSourceRef.current && audioCtxRef.current) {
@@ -89,9 +92,10 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         if (audioEnded && currentPlaylist && currentSong) {
             console.log('Handling next song')
             const currentSongIndex = currentPlaylist.songs.indexOf(currentSong)
-            if (currentSongIndex + 1 === currentPlaylist.songs.length + 1) {
-                setCurrentSong(currentPlaylist.songs[0])
+            if (currentSongIndex + 1 === currentPlaylist.songs.length) {
+                setIsAudioPlaying(false)
             } else {
+                console.log('setCurrentSong(currentPlaylist.songs[currentSongIndex + 1])')
                 setCurrentSong(currentPlaylist.songs[currentSongIndex + 1])
             }
             setAudioEnded(false)
@@ -114,7 +118,9 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
                 currentSong,
                 setCurrentSong,
                 currentPlaylist,
-                setCurrentPlaylist
+                setCurrentPlaylist,
+                audioElementRef,
+                audioCurrentTime
             }}
         >
             {children}

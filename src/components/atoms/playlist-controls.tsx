@@ -141,14 +141,16 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
 
     return (
         <div className="flex gap-4 text-brand">
-            <button onClick={() => playPlaylist()}>
-                {
-                    targetPlaylist === currentPlaylist && isAudioPlaying ?
-                    <Pause className="w-10 h-10"/>
-                    :
-                    <PlayCircle className="w-10 h-10"/>
-                }
-            </button>
+            {targetPlaylist && targetPlaylist?.songs.length > 0 &&
+                <button onClick={() => playPlaylist()}>
+                    {
+                        targetPlaylist === currentPlaylist && isAudioPlaying ?
+                        <Pause className="w-10 h-10"/>
+                        :
+                        <PlayCircle className="w-10 h-10"/>
+                    }
+                </button>
+            }
             <button onClick={() => addSongsToPlaylist()}>
                 <PlusCircle className="w-10 h-10"/>
             </button>

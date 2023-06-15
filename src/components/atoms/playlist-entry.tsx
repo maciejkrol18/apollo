@@ -32,9 +32,12 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
     return (
         <tr>
             <td className="py-2">
-                <button onClick={() => handlePlayClick()}>Play</button>
+                <div className="group">
+                    <p className="group-hover:hidden">{idx+1}</p>
+                    <button className="hidden group-hover:block" onClick={() => handlePlayClick()}>Play</button>
+                </div>
             </td>
-            <td className="py-2">{idx+1}. {song.title}</td>
+            <td className="py-2">{song.title}</td>
             <td className="py-2">{formattedDateAdded}</td>
             <td className="py-2">{formattedSeconds}</td>
         </tr>
