@@ -1,6 +1,6 @@
 import { AppAudioContext } from "@/contexts/app-audio-context";
 import { PlaylistObject, PlaylistSong } from "@/ts/interfaces";
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const AppAudio = ({children}: {children: React.ReactNode}) => {
 
@@ -113,6 +113,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
                 isAudioPlaying,
                 currentSong,
                 setCurrentSong,
+                currentPlaylist,
                 setCurrentPlaylist
             }}
         >
