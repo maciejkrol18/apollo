@@ -10,10 +10,13 @@ const AudioBar: React.FC = () => {
     dayjs.extend(duration)
 
     const {
-        currentSong, togglePlayback, isAudioPlaying, audioElementRef,
+        currentSong, setCurrentSong, 
+        currentPlaylist, 
+        togglePlayback, 
+        isAudioPlaying, audioElementRef,
         audioCurrentTime
     } = useContext(AppAudioContext) as AppAudioContextValues
-    
+
     const [isSeeking, setIsSeeking] = useState(false)
 
     useEffect(() => {
@@ -32,13 +35,36 @@ const AudioBar: React.FC = () => {
         }
     }
 
+    const prevSong = () => {
+        if (currentPlaylist && currentSong) {
+            const currentSongIndex = currentPlaylist.songs.indexOf(currentSong)
+            if (currentSongIndex - 1 === -1) {
+                console.log('gowno')
+                setCurrentSong(currentPlaylist.songs[currentPlaylist.songs.length - 1])
+            } else {
+                setCurrentSong(currentPlaylist.songs[currentSongIndex - 1])
+            }
+        }
+    }
+
+    const nextSong = () => {
+        if (currentPlaylist && currentSong) {
+            const currentSongIndex = currentPlaylist.songs.indexOf(currentSong)
+            if (currentSongIndex + 1 === currentPlaylist.songs.length) {
+                setCurrentSong(currentPlaylist.songs[0])
+            } else {
+                setCurrentSong(currentPlaylist.songs[currentSongIndex + 1])
+            }
+        }
+    }
+
     const seekBarRef = useRef(null)
 
     return (
         <div className="flex items-center justify-center grow max-h-[200px] bg-menus-background">
             <div className="flex flex-col gap-3 items-center">
                 <div className="flex gap-5">
-                    <button disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
+                    <button disabled={!Boolean(currentSong)} onClick={() => prevSong()}>
                         <SkipBack className="w-6 h-6"/>
                     </button>
                     <button disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
@@ -49,7 +75,7 @@ const AudioBar: React.FC = () => {
                             <PlayIcon className="w-6 h-6"/>
                         }
                     </button>
-                    <button disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
+                    <button disabled={!Boolean(currentSong)} onClick={() => nextSong()}>
                         <SkipForward className="w-6 h-6"/>
                     </button>
                 </div>
