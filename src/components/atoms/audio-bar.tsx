@@ -18,19 +18,22 @@ const AudioBar: React.FC = () => {
     } = useContext(AppAudioContext) as AppAudioContextValues
 
     const [isSeeking, setIsSeeking] = useState(false)
+    const [seekValue, setSeekValue] = useState(0)
+    const seekBarRef = useRef(null)
 
+    // Triggers every second of the audio playback
     useEffect(() => {
-        if (seekBarRef.current && !isSeeking) {
-            const input = seekBarRef.current as HTMLInputElement
-            if (audioCurrentTime) {
-                input.value = audioCurrentTime.toString()
-            }
+        if (seekBarRef.current && audioCurrentTime && !isSeeking) {
+            const bar = seekBarRef.current as HTMLInputElement
+            bar.value = audioCurrentTime.toString()
+            setSeekValue(audioCurrentTime)
         }
     },[audioCurrentTime])
 
-    const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSeekChange = (e: React.MouseEvent<HTMLInputElement>) => {
         if (audioElementRef.current) {
-            audioElementRef.current.currentTime = Number(e.target.value)
+            const eventTarget = e.target as HTMLInputElement
+            audioElementRef.current.currentTime = Number(eventTarget.value)
             setIsSeeking(false)
         }
     }
@@ -57,8 +60,6 @@ const AudioBar: React.FC = () => {
         }
     }
 
-    const seekBarRef = useRef(null)
-
     return (
         <div className="flex items-center justify-center grow max-h-[200px] bg-menus-background">
             <div className="flex flex-col gap-3 items-center">
@@ -82,27 +83,18 @@ const AudioBar: React.FC = () => {
                 <div className="flex gap-3 items-center">
                     <p className="w-14 text-center">
                         {
-                            audioCurrentTime === 0 ?
-                            '00:00'
-                            :
-                            audioCurrentTime && dayjs.duration(audioCurrentTime, 'seconds').format('mm:ss')
+                            dayjs.duration(seekValue, 'seconds').format('mm:ss')
                         }
                     </p>
-                    {/* <div className="bg-slate-800 w-[300px] h-2 rounded-lg">
-                            <div 
-                                style={{width: `${getDurationBarWidth()}%`}}
-                                className="bg-slate-600 h-full rounded-lg"
-                            />
-                    </div> */}
                     <input 
                         type="range" 
                         className="w-64" 
                         ref={seekBarRef}
-                        onInput={() => setIsSeeking(true)}
-                        onChange={(e) => handleSeek(e)}
-                        min={0} 
-                        step={1} 
+                        onChange={(e) => setSeekValue(Number(e.target.value))}
+                        onMouseDown={() => setIsSeeking(true)}
+                        onMouseUp={(e) => handleSeekChange(e)}
                         max={currentSong.lengthInSeconds}
+                        step={1}
                     />
                     <p className="w-14 text-center">
                         {

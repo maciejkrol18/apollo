@@ -30,20 +30,22 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
     // Initialize Web Audio API components
     useEffect(() => {
         if (wasAudioInitialized.current) return
-
         wasAudioInitialized.current = true
+        
         audioCtxRef.current = new AudioContext()
         audioElementRef.current = new Audio()
         audioSourceRef.current = audioCtxRef.current.createMediaElementSource(audioElementRef.current)
         audioGainRef.current = audioCtxRef.current.createGain()
         audioAnalyserRef.current = audioCtxRef.current.createAnalyser()
-        audioElementRef.current.crossOrigin = 'anonymous' // For some reason required
+
+        audioElementRef.current.crossOrigin = 'anonymous'
+        audioElementRef.current.preload = 'metadata'
         audioElementRef.current.autoplay = shouldAutoplay
 
         audioElementRef.current.onended = () => setAudioEnded(true)
         audioElementRef.current.ontimeupdate = () => {
             if (audioElementRef.current?.currentTime !== undefined) {
-                setAudioCurrentTime(Math.round(audioElementRef.current?.currentTime))
+                setAudioCurrentTime(Math.floor(audioElementRef.current?.currentTime))
             } else {
                 setAudioCurrentTime(0)
             }
@@ -52,7 +54,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         audioSourceRef.current.connect(audioCtxRef.current.destination)
         audioGainRef.current.connect(audioCtxRef.current.destination)
 
-        audioGainRef.current.gain.value = 0.001
+        audioGainRef.current.gain.value = 0.1
 
         return () => {
             if (audioSourceRef.current && audioCtxRef.current) {
@@ -129,57 +131,3 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
 }
 
 export default AppAudio
-
-// ** THIS DOESN'T WORK - JUST AN OLD VERSION FOR REFERENCE **
-
-// const AppAudio = ({ children }: {children: React.ReactNode}) => {
-//     const [currentPlaylistID, setCurrentPlaylistID] = useState(0);
-//     const [currentSongID, setCurrentSongID] = useState(null);
-//     const [isAudioPlaying, setIsAudioPlaying] = useState(false);
-//     const audioRef = useRef();
-
-//     useEffect(() => {
-//         const audioElement = audioRef.current;
-//         const audioCtx = new AudioContext();
-//         const source = audioCtx.createMediaElementSource(audioElement);
-//         const gainNode = audioCtx.createGain();
-//         source.connect(audioCtx.destination);
-//         gainNode.connect(audioCtx.destination);
-
-//         return () => {
-//             source.disconnect();
-//             audioCtx.close();
-//         };
-//     }, []);
-
-//     useEffect(() => {
-//       const audioElement: HTMLAudioElement = audioRef.current;
-//       if (audioElement) {
-//         if (isAudioPlaying) {
-//           audioElement.play();
-//         } else {
-//           audioElement.pause();
-//         }
-//       }
-//     }, [isAudioPlaying]);
-  
-//     return (
-//       <AppAudioContext.Provider
-//         value={{
-//           currentPlaylistID,
-//           currentSongID,
-//           setCurrentPlaylistID,
-//           setCurrentSongID,
-//         }}
-//       >
-//         <audio
-//           ref={audioRef}
-//           src={currentSongID.filepath}
-//         />
-//         <button onClick={() => setIsAudioPlaying((prevState) => !prevState)}>
-//           {isAudioPlaying ? 'Pause' : 'Play'}
-//         </button>
-//         {children}
-//       </AppAudioContext.Provider>
-//     );
-//   }
