@@ -73,10 +73,10 @@ const AudioBar: React.FC = () => {
         <div className="flex items-center justify-center grow max-h-[200px] bg-menus-background">
             <div className="flex flex-col gap-3 items-center">
                 <div className="flex gap-5">
-                    <button disabled={!Boolean(currentSong)} onClick={() => prevSong()}>
+                    <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => prevSong()}>
                         <SkipBack className="w-6 h-6"/>
                     </button>
-                    <button disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
+                    <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
                         {
                             isAudioPlaying ?
                             <Pause className="w-6 h-6"/>
@@ -84,7 +84,7 @@ const AudioBar: React.FC = () => {
                             <PlayIcon className="w-6 h-6"/>
                         }
                     </button>
-                    <button disabled={!Boolean(currentSong)} onClick={() => nextSong()}>
+                    <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => nextSong()}>
                         <SkipForward className="w-6 h-6"/>
                     </button>
                 </div>
@@ -102,7 +102,7 @@ const AudioBar: React.FC = () => {
                     </p>
                     <input 
                         type="range" 
-                        className="w-64" 
+                        className="w-64 h-1" 
                         ref={seekBarRef}
                         onChange={(e) => setSeekValue(Number(e.target.value))}
                         onMouseDown={() => setIsSeeking(true)}
