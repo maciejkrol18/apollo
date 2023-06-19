@@ -31,7 +31,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
     useEffect(() => {
         if (wasAudioInitialized.current) return
         wasAudioInitialized.current = true
-        
+
         audioCtxRef.current = new AudioContext()
         audioElementRef.current = new Audio()
         audioSourceRef.current = audioCtxRef.current.createMediaElementSource(audioElementRef.current)
@@ -52,7 +52,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         }
 
         audioSourceRef.current.connect(audioCtxRef.current.destination)
-        audioGainRef.current.connect(audioCtxRef.current.destination)
+        audioSourceRef.current.connect(audioGainRef.current).connect(audioCtxRef.current.destination)
 
         audioGainRef.current.gain.value = 0.1
 
@@ -122,7 +122,8 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
                 currentPlaylist,
                 setCurrentPlaylist,
                 audioElementRef,
-                audioCurrentTime
+                audioCurrentTime,
+                audioGainRef
             }}
         >
             {children}

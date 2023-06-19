@@ -14,7 +14,8 @@ const AudioBar: React.FC = () => {
         currentPlaylist, 
         togglePlayback, 
         isAudioPlaying, audioElementRef,
-        audioCurrentTime
+        audioCurrentTime,
+        audioGainRef
     } = useContext(AppAudioContext) as AppAudioContextValues
 
     const [isSeeking, setIsSeeking] = useState(false)
@@ -70,7 +71,10 @@ const AudioBar: React.FC = () => {
     }
 
     return (
-        <div className="flex items-center justify-center grow max-h-[200px] bg-menus-background">
+        <div className="grid grid-cols-3 px-10 items-center justify-center grow max-h-[200px] bg-menus-background">
+
+            <div/>
+
             <div className="flex flex-col gap-3 items-center">
                 <div className="flex gap-5">
                     <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => prevSong()}>
@@ -119,6 +123,16 @@ const AudioBar: React.FC = () => {
                 }
                 <p className="text-lg text-center font-bold">{currentSong?.title}</p>
             </div>
+
+            <div className="flex justify-end">
+                <button onClick={() => {
+                    const volume = prompt('volume')
+                    if (audioGainRef.current) {
+                        audioGainRef.current.gain.value = Number(volume)
+                    }
+                }}>Placeholder volume changer</button>
+            </div>
+
         </div>
     )
 }

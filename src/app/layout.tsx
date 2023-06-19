@@ -6,9 +6,9 @@ import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { ArrowLeftCircle } from 'lucide-react';
-import AppAudio from "@/components/organisms/app-audio";
+import AppAudio from "@/components/atoms/app-audio";
 import AsideBar from "@/components/organisms/aside-bar";
-import AudioBar from "@/components/atoms/audio-bar";
+import AudioBar from "@/components/molecules/audio-bar";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -19,11 +19,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body className={`overflow-clip text-menus-foreground bg-body ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
-          <div className="flex flex-col gap-14 justify-between mt-7 min-h-screen overflow-auto">
+          <div 
+            style={{height: "calc(100vh - 24px)"}}
+            className="flex flex-col gap-14 justify-between mt-7 overflow-auto"
+          >
           <AppAudio>
             <div className="flex grow gap-8 px-4 max-h-[664px]">
               <AsideBar/>
-              <main className="flex flex-col rounded-2xl grow bg-menus-background p-8">
+              <main className="flex flex-col overflow-auto rounded-2xl grow bg-menus-background p-8">
                 <div className="w-full mb-4">
                   <button onClick={() => router.back()}>
                     <ArrowLeftCircle className="text-slate-700 h-10 w-10"/>

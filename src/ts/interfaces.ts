@@ -11,6 +11,7 @@ export interface AppAudioContextValues {
     setCurrentPlaylist: React.Dispatch<React.SetStateAction<PlaylistObject | null>>;
     audioElementRef: MutableRefObject<HTMLAudioElement | null>;
     audioCurrentTime: number | undefined;
+    audioGainRef: MutableRefObject<GainNode | null>;
 }
 
 export interface PlaylistSong {
