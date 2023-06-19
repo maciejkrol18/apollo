@@ -4,16 +4,15 @@ import { Pause, SkipForward, SkipBack, PlayIcon } from "lucide-react"
 import { useContext, useEffect, useState, useRef} from "react"
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration"
+import PlaybackController from "../atoms/playback-controller";
 
 const AudioBar: React.FC = () => {
 
     dayjs.extend(duration)
 
     const {
-        currentSong, setCurrentSong, 
-        currentPlaylist, 
-        togglePlayback, 
-        isAudioPlaying, audioElementRef,
+        currentSong, 
+        audioElementRef,
         audioCurrentTime,
         audioGainRef
     } = useContext(AppAudioContext) as AppAudioContextValues
@@ -48,50 +47,13 @@ const AudioBar: React.FC = () => {
         }
     }
 
-    const prevSong = () => {
-        if (currentPlaylist && currentSong) {
-            const currentSongIndex = currentPlaylist.songs.indexOf(currentSong)
-            if (currentSongIndex - 1 === -1) {
-                setCurrentSong(currentPlaylist.songs[currentPlaylist.songs.length - 1])
-            } else {
-                setCurrentSong(currentPlaylist.songs[currentSongIndex - 1])
-            }
-        }
-    }
-
-    const nextSong = () => {
-        if (currentPlaylist && currentSong) {
-            const currentSongIndex = currentPlaylist.songs.indexOf(currentSong)
-            if (currentSongIndex + 1 === currentPlaylist.songs.length) {
-                setCurrentSong(currentPlaylist.songs[0])
-            } else {
-                setCurrentSong(currentPlaylist.songs[currentSongIndex + 1])
-            }
-        }
-    }
-
     return (
         <div className="grid grid-cols-3 px-10 items-center justify-center grow max-h-[200px] bg-menus-background">
 
             <div/>
 
             <div className="flex flex-col gap-3 items-center">
-                <div className="flex gap-5">
-                    <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => prevSong()}>
-                        <SkipBack className="w-6 h-6"/>
-                    </button>
-                    <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
-                        {
-                            isAudioPlaying ?
-                            <Pause className="w-6 h-6"/>
-                            :
-                            <PlayIcon className="w-6 h-6"/>
-                        }
-                    </button>
-                    <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => nextSong()}>
-                        <SkipForward className="w-6 h-6"/>
-                    </button>
-                </div>
+                <PlaybackController/>
                 {currentSong &&
                 <div className="flex gap-3 items-center">
                     <p className="w-14 text-center">
