@@ -34,8 +34,8 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
 
         audioCtxRef.current = new AudioContext()
         audioElementRef.current = new Audio()
-        audioSourceRef.current = audioCtxRef.current.createMediaElementSource(audioElementRef.current)
         audioGainRef.current = audioCtxRef.current.createGain()
+        audioSourceRef.current = audioCtxRef.current.createMediaElementSource(audioElementRef.current)
         audioAnalyserRef.current = audioCtxRef.current.createAnalyser()
 
         audioElementRef.current.crossOrigin = 'anonymous'
@@ -50,11 +50,11 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
                 setAudioCurrentTime(0)
             }
         }
+        
+        audioGainRef.current.connect(audioCtxRef.current.destination)
+        audioSourceRef.current.connect(audioGainRef.current)
 
-        audioSourceRef.current.connect(audioCtxRef.current.destination)
-        audioSourceRef.current.connect(audioGainRef.current).connect(audioCtxRef.current.destination)
-
-        audioGainRef.current.gain.value = 0.1
+        audioGainRef.current.gain.value = 0
 
         return () => {
             if (audioSourceRef.current && audioCtxRef.current) {
