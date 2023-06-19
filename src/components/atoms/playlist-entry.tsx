@@ -43,7 +43,9 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
                         :
                         <p className="group-hover:hidden">{idx+1}</p>
                     }
-                    <button className="hidden group-hover:block" onClick={() => handlePlayClick()}>Play</button>
+                    <button className="hidden group-hover:block" onClick={() => handlePlayClick()}>
+                        {isAudioPlaying && currentSong === song ? "Pause" : "Play"}
+                    </button>
                 </div>
             </td>
             <td className="py-2">
