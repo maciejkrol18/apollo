@@ -30,6 +30,15 @@ const AudioBar: React.FC = () => {
         }
     },[audioCurrentTime])
 
+    // Reset the values on song change
+    useEffect(() => {
+        setSeekValue(0)
+        if (seekBarRef.current) {
+            const bar = seekBarRef.current as HTMLInputElement
+            bar.value = "0"
+        }
+    },[currentSong])
+
     const handleSeekChange = (e: React.MouseEvent<HTMLInputElement>) => {
         if (audioElementRef.current) {
             const eventTarget = e.target as HTMLInputElement
