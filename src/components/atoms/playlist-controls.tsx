@@ -88,10 +88,13 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
     }
 
     const playPlaylist = () => {
+        console.log('playPlaylist clicked')
         if (targetPlaylist) {
-            if (targetPlaylist === currentPlaylist) {
+            if (targetPlaylist.id === currentPlaylist?.id) {
+                console.log('toggling playback')
                 togglePlayback()
             } else {
+                console.log('changing current playlist')
                 setCurrentPlaylist(targetPlaylist)
                 setCurrentSong(targetPlaylist.songs[0])
             }
@@ -144,7 +147,7 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
             {targetPlaylist && targetPlaylist?.songs.length > 0 &&
                 <button onClick={() => playPlaylist()}>
                     {
-                        targetPlaylist === currentPlaylist && isAudioPlaying ?
+                        targetPlaylist.id === currentPlaylist?.id && isAudioPlaying ?
                         <Pause className="w-10 h-10"/>
                         :
                         <PlayCircle className="w-10 h-10"/>
