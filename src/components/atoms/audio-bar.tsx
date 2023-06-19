@@ -92,7 +92,12 @@ const AudioBar: React.FC = () => {
                 <div className="flex gap-3 items-center">
                     <p className="w-14 text-center">
                         {
-                            dayjs.duration(seekValue, 'seconds').format('mm:ss')
+                            dayjs.duration
+                            (
+                                seekValue > currentSong.lengthInSeconds ? 
+                                currentSong.lengthInSeconds : seekValue, 'seconds'
+                            )
+                            .format('mm:ss')
                         }
                     </p>
                     <input 
