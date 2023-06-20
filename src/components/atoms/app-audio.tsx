@@ -50,11 +50,11 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
                 setAudioCurrentTime(0)
             }
         }
-        
+
         audioGainRef.current.connect(audioCtxRef.current.destination)
         audioSourceRef.current.connect(audioGainRef.current)
 
-        audioGainRef.current.gain.value = 0
+        audioGainRef.current.gain.value = 0.1
 
         return () => {
             if (audioSourceRef.current && audioCtxRef.current) {

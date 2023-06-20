@@ -17,8 +17,6 @@ const VolumeController: React.FC = () => {
     const changeVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (audioGainRef.current) {
             audioGainRef.current.gain.value = Number(e.target.value)
-            console.log("Event arget", e.target.value)
-            console.log("gain value", audioGainRef.current.gain.value)
         }
     }
 
