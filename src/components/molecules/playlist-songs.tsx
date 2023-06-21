@@ -10,7 +10,7 @@ const PlaylistSongs: React.FC<PlaylistSongsProps> = ({targetPlaylist}) => {
         <table className="text-left w-full">
         <tbody>
             <tr>
-                <th>Index</th>
+                <th>#</th>
                 <th>Title</th>
                 <th>Date added</th>
                 <th>Length</th>
@@ -18,10 +18,8 @@ const PlaylistSongs: React.FC<PlaylistSongsProps> = ({targetPlaylist}) => {
             {targetPlaylist?.songs.map((song, idx) => (
                 <PlaylistEntry
                     key={idx}
-                    title={song.title}
-                    convertedFilepath={song.convertedFilepath}
-                    lengthInSeconds={song.lengthInSeconds}
-                    dateAdded={song.dateAdded}
+                    song={song}
+                    playlist={targetPlaylist}
                     idx={idx}
                 />
             ))}

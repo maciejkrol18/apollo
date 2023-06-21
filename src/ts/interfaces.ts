@@ -1,8 +1,17 @@
-import { StaticImageData } from "next/image";
+import { MutableRefObject } from "react";
 
 export interface AppAudioContextValues {
     playlistsArray: Array<PlaylistObject>;
-    setPlaylistsArray: React.Dispatch<React.SetStateAction<Array<PlaylistObject>>>
+    setPlaylistsArray: React.Dispatch<React.SetStateAction<Array<PlaylistObject>>>;
+    togglePlayback: () => void;
+    isAudioPlaying: boolean;
+    currentSong: PlaylistSong | null;
+    setCurrentSong: React.Dispatch<React.SetStateAction<PlaylistSong | null>>;
+    currentPlaylist: PlaylistObject | null;
+    setCurrentPlaylist: React.Dispatch<React.SetStateAction<PlaylistObject | null>>;
+    audioElementRef: MutableRefObject<HTMLAudioElement | null>;
+    audioCurrentTime: number | undefined;
+    audioGainRef: MutableRefObject<GainNode | null>;
 }
 
 export interface PlaylistSong {

@@ -25,6 +25,13 @@
       },
       "path": {
         "all": true
+      },
+      "protocol": {
+        "all": true,
+        "asset": true,
+        "assetScope": [
+          "**"
+        ]
       }
     },
     "bundle": {
@@ -61,7 +68,7 @@
       }
     },
     "security": {
-      "csp": "default-src 'self'; audio-src 'self' asset: https://asset.localhost"
+      "csp": ""
     },
     "updater": {
       "active": false

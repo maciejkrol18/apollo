@@ -1,17 +1,17 @@
-import { PlaylistObject } from "@/ts/interfaces";
-import { Edit, PlayCircle, PlusCircle, Trash } from "lucide-react";
+import { AppAudioContextValues, PlaylistObject } from "@/ts/interfaces";
+import { Edit, PlayCircle, Pause, PlusCircle, Trash } from "lucide-react";
 import { open } from '@tauri-apps/api/dialog';
 import { nanoid } from "nanoid";
 import { convertFileSrc } from '@tauri-apps/api/tauri';
 import { basename, resolveResource, audioDir } from '@tauri-apps/api/path';
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { invoke } from '@tauri-apps/api/tauri';
 import Image from "next/image"
 import Modal from "./modal";
+import { AppAudioContext } from "@/contexts/app-audio-context";
 
 interface PlaylistControlsProps {
-    playlistsArray: Array<PlaylistObject>
     setPlaylistsArray: React.Dispatch<React.SetStateAction<PlaylistObject[]>>;
     id: string | undefined;
     targetPlaylist: PlaylistObject | undefined;
@@ -45,11 +45,14 @@ const getFilesFromDialog = async () => {
     }
 }
 
-const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setPlaylistsArray, id, targetPlaylist}) => {
+const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, id, targetPlaylist}) => {
 
     const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const [playlistTitle, setPlaylistTitle] = useState<string | undefined>(targetPlaylist?.title)
+    const {
+        setCurrentSong, currentPlaylist, setCurrentPlaylist, togglePlayback, isAudioPlaying
+    } = useContext(AppAudioContext) as AppAudioContextValues
 
     useEffect(() => {
         if (targetPlaylist) {
@@ -57,7 +60,7 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setP
         }
     },[targetPlaylist])
 
-    const addSongsToPlaylist = useCallback(async () => {
+    const addSongsToPlaylist = async () => {
         const songs = await getFilesFromDialog()
         if (songs) {
             setPlaylistsArray((prevPlaylists) => {
@@ -73,7 +76,7 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setP
                 }) 
             })
         }
-    },[])
+    }
 
     const removePlaylist = () => {
         if (targetPlaylist) {
@@ -82,6 +85,20 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setP
             })
         }
         router.push('/')
+    }
+
+    const playPlaylist = () => {
+        console.log('playPlaylist clicked')
+        if (targetPlaylist) {
+            if (targetPlaylist.id === currentPlaylist?.id) {
+                console.log('toggling playback')
+                togglePlayback()
+            } else {
+                console.log('changing current playlist')
+                setCurrentPlaylist(targetPlaylist)
+                setCurrentSong(targetPlaylist.songs[0])
+            }
+        }
     }
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -127,9 +144,16 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({playlistsArray, setP
 
     return (
         <div className="flex gap-4 text-brand">
-            <button>
-                <PlayCircle className="w-10 h-10"/>
-            </button>
+            {targetPlaylist && targetPlaylist?.songs.length > 0 &&
+                <button onClick={() => playPlaylist()}>
+                    {
+                        targetPlaylist.id === currentPlaylist?.id && isAudioPlaying ?
+                        <Pause className="w-10 h-10"/>
+                        :
+                        <PlayCircle className="w-10 h-10"/>
+                    }
+                </button>
+            }
             <button onClick={() => addSongsToPlaylist()}>
                 <PlusCircle className="w-10 h-10"/>
             </button>

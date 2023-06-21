@@ -29,7 +29,6 @@ const PlaylistHeader: React.FC<PlaylistHeaderProps> = (
                     id={targetPlaylist?.id}
                 />
                 <PlaylistControls
-                    playlistsArray={playlistsArray}
                     setPlaylistsArray={setPlaylistsArray}
                     id={targetPlaylist?.id}
                     targetPlaylist={targetPlaylist}
