@@ -1,6 +1,6 @@
 import { AppAudioContext } from "@/contexts/app-audio-context";
 import { PlaylistObject, PlaylistSong } from "@/ts/interfaces";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const AppAudio = ({children}: {children: React.ReactNode}) => {
 
@@ -104,11 +104,11 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         }
     },[audioEnded])
 
-    const togglePlayback = () => {
+    const togglePlayback = useCallback(() => {
         if (audioElementRef.current) {
             setIsAudioPlaying(prev => !prev)
         }
-    }
+    },[isAudioPlaying])
 
     return (
         <AppAudioContext.Provider

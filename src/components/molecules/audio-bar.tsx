@@ -15,7 +15,12 @@ const AudioBar: React.FC = () => {
             <div className="flex flex-col gap-3 items-center">
                 <PlaybackController/>
                 <SeekBar/>
-                <p className="text-lg text-center font-bold">{currentSong?.title}</p>
+                <p 
+                    className="text-lg text-center max-w-full font-bold max-h-[28px] text-ellipsis overflow-hidden whitespace-nowrap"
+                    title={currentSong?.title}
+                >
+                    {currentSong?.title}
+                </p>
             </div>
 
             <div className="flex justify-end">

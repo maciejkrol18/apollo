@@ -2,8 +2,9 @@ import { AppAudioContext } from "@/contexts/app-audio-context";
 import { AppAudioContextValues, PlaylistObject, PlaylistSong } from "@/ts/interfaces";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration"
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import AudioWaves from "./audio-waves";
+import { PauseIcon, Play } from "lucide-react";
 
 interface PlaylistEntryProps {
     song: PlaylistSong;
@@ -21,21 +22,20 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
     const formattedDateAdded = dayjs(song.dateAdded).format('DD.MM.YYYY')
     const formattedSeconds = dayjs.duration(song.lengthInSeconds, 'seconds').format('mm:ss')
 
-    const handlePlayClick = () => {
+    const handlePlayClick = useCallback(() => {
         if (song === currentSong) {
             togglePlayback()
         } else {
             setCurrentSong(song)
             setCurrentPlaylist(playlist)
         }
-    }
+    },[currentSong,song,playlist])
 
     return (
         <tr className="px-3 hover:bg-playlist-entry-highlight">
-            <td className="py-2">
+            <td className="py-2 w-12">
                 <div className="group">
-                    {
-                        currentSong === song && isAudioPlaying ?
+                    {currentSong === song && isAudioPlaying ?
                         <AudioWaves className="group-hover:hidden"/>
                         :
                         currentSong === song && !isAudioPlaying ?
@@ -44,7 +44,9 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
                         <p className="group-hover:hidden">{idx+1}</p>
                     }
                     <button className="hidden group-hover:block" onClick={() => handlePlayClick()}>
-                        {isAudioPlaying && currentSong === song ? "Pause" : "Play"}
+                        {isAudioPlaying && currentSong === song ?
+                            <PauseIcon/> : <Play/>
+                        }
                     </button>
                 </div>
             </td>
