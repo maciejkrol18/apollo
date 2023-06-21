@@ -30,7 +30,7 @@ const VolumeController: React.FC = () => {
                 type="range"
                 ref={volumeInputRef}
                 min={0}
-                max={2}
+                max={1}
                 step={0.01}
                 onChange={(e) => changeVolume(e)}
             />
