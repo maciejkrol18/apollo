@@ -1,7 +1,7 @@
 import { AppAudioContext } from "@/contexts/app-audio-context"
 import { AppAudioContextValues } from "@/ts/interfaces"
 import { SkipBack, Pause, PlayIcon, SkipForward } from "lucide-react"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 
 const PlaybackController: React.FC = () => {
 
@@ -11,6 +11,12 @@ const PlaybackController: React.FC = () => {
         togglePlayback, 
         isAudioPlaying,
     } = useContext(AppAudioContext) as AppAudioContextValues
+
+    const handleSpacebar = (e: KeyboardEvent) => {
+        if (e.code === "Space") {
+            togglePlayback()
+        }
+    }
 
     const prevSong = () => {
         if (currentPlaylist && currentSong) {
@@ -33,6 +39,14 @@ const PlaybackController: React.FC = () => {
             }
         }
     }
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleSpacebar)
+
+        return () => {
+            window.removeEventListener('keydown', handleSpacebar)
+        }
+    },[])
 
     return (
         <div className="flex gap-5">
