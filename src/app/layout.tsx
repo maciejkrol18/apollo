@@ -21,10 +21,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <TailwindIndicator/>
           <div 
             style={{height: "calc(100vh - 24px)"}}
-            className="flex flex-col gap-14 justify-between mt-7 overflow-auto"
+            className="flex flex-col gap-2 mt-4"
           >
           <AppAudio>
-            <div className="flex grow gap-8 px-4 max-h-[664px]">
+            <div className="flex grow gap-2 px-2 max-h-[900px]">
               <AsideBar/>
               <main className="flex flex-col overflow-auto rounded-2xl grow bg-menus-background p-8">
                 <div className="w-full mb-4">
