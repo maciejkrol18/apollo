@@ -20,7 +20,7 @@ const PlaylistMeta: React.FC<PlaylistMetaProps> = ({title, creationDate, songsAm
                     <Clock className="h-4 w-4"/> Created on {formattedCreationDate}
                 </p>
                 <p className="flex items-center gap-2">
-                    <Music4 className="h-4 w-4"/> {songsAmount} songs
+                    <Music4 className="h-4 w-4"/> {songsAmount} {songsAmount! > 1 ? 'songs' : 'song'}
                 </p>
                 <p className="flex items-center gap-2">
                     <FileDigit className="h-4 w-4"/> {id}

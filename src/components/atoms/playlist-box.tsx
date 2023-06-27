@@ -15,7 +15,7 @@ const PlaylistBox: React.FC<PlaylistBoxProps> = ({coverImgPath, title, songsAmou
             <img className="w-[40px] bg-gray-800 object-cover rounded-l-lg" src={coverImgPath}/>
             <div className="flex flex-col gap-1 py-2 ml-2">
                 <p className={`font-semibold ${highlight ? "text-brand" : ""}`}>{title}</p>
-                <p>{songsAmount} songs</p>
+                <p>{songsAmount} {songsAmount > 1 ? "songs" : "song"}</p>
             </div>
         </Link>
     )
