@@ -21,6 +21,7 @@ const VolumeController: React.FC = () => {
             audioGainRef.current.gain.value = volume
         }
         volume > 0 ? setIsMuted(false) : setIsMuted(true)
+        localStorage.setItem('apollo-volume', volume.toString())
     },[volume])
 
     const changeVolume = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

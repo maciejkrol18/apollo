@@ -54,7 +54,7 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
         audioGainRef.current.connect(audioCtxRef.current.destination)
         audioSourceRef.current.connect(audioGainRef.current)
 
-        audioGainRef.current.gain.value = 0.1
+        audioGainRef.current.gain.value = Number(localStorage.getItem('apollo-volume'))
 
         return () => {
             if (audioSourceRef.current && audioCtxRef.current) {
