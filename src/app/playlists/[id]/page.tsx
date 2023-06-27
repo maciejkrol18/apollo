@@ -1,6 +1,5 @@
 "use client";
 
-import PlaylistEntry from "@/components/atoms/playlist-entry";
 import PlaylistHeader from "@/components/molecules/playlist-header";
 import PlaylistSongs from "@/components/molecules/playlist-songs";
 import { AppAudioContext } from "@/contexts/app-audio-context";
