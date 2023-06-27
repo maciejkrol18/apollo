@@ -10,7 +10,7 @@ interface PlaylistHeaderProps {
 }
 
 const PlaylistHeader: React.FC<PlaylistHeaderProps> = (
-    {targetPlaylist, playlistsArray, setPlaylistsArray}
+    {targetPlaylist, setPlaylistsArray}
 ) => {
     return (
         <header className="flex gap-7">
