@@ -9,7 +9,7 @@ const AudioBar: React.FC = () => {
     const {currentSong} = useContext(AppAudioContext) as AppAudioContextValues
 
     return (
-        <div className="grid grid-cols-3 px-10 items-center h-[200px] bg-menus-background">
+        <div className="grid grid-cols-3 p-8 items-center bg-menus-background">
             <div/>
 
             <div className="flex flex-col gap-3 items-center">
