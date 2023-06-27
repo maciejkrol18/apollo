@@ -16,15 +16,15 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   const router = useRouter();
   return (
     <html lang="en">
-      <body className={`overflow-clip text-menus-foreground bg-body ${plusJakartaSans.className}`}>
+      <body className={` text-menus-foreground bg-body ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
           <div 
-            style={{height: "calc(100vh - 24px)"}}
+            style={{height: "calc(100vh - 40px)"}}
             className="flex flex-col gap-2 mt-4"
           >
           <AppAudio>
-            <div className="flex grow gap-2 px-2 max-h-[900px]">
+            <div className="flex grow gap-2 px-2">
               <AsideBar/>
               <main className="flex flex-col overflow-auto rounded-2xl grow bg-menus-background p-8">
                 <div className="w-full mb-4">
