@@ -24,7 +24,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             className="flex flex-col gap-2 mt-4"
           >
           <AppAudio>
-            <div className="flex grow gap-2 px-2">
+            <div className="flex grow gap-2 px-2 max-h-[828px]">
               <AsideBar/>
               <main className="flex flex-col overflow-auto rounded-2xl grow bg-menus-background p-8">
                 <div className="w-full mb-4">

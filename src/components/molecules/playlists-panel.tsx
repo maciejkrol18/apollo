@@ -50,7 +50,7 @@ const PlaylistsPanel: React.FC = () => {
                         <PlaylistBox
                             key={idx}
                             title={playlist.title}
-                            coverImgPath={''}
+                            coverImgPath={playlist.coverImgPath}
                             songsAmount={playlist.songs.length}
                             id={playlist.id}
                             highlight={id === playlist.id}

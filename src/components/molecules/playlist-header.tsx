@@ -1,7 +1,8 @@
 import { PlaylistObject } from "@/ts/interfaces";
-import Image from "next/image"
 import PlaylistMeta from "../atoms/playlist-meta"
 import PlaylistControls from "../atoms/playlist-controls";
+import { open } from '@tauri-apps/api/dialog';
+import { convertFileSrc } from '@tauri-apps/api/tauri';
 
 interface PlaylistHeaderProps {
     playlistsArray: Array<PlaylistObject>
@@ -9,17 +10,47 @@ interface PlaylistHeaderProps {
     setPlaylistsArray: React.Dispatch<React.SetStateAction<PlaylistObject[]>>
 }
 
+const getImageFilePath = async () => {
+    const selection = await open({
+        filters: [{
+            name: 'Image file',
+            extensions: ['jpg', 'jpeg', 'png', 'webp']
+        }],
+    })
+    if (selection) {
+        return convertFileSrc(selection as string)  
+    }
+}
+
 const PlaylistHeader: React.FC<PlaylistHeaderProps> = (
     {targetPlaylist, setPlaylistsArray}
 ) => {
+
+    const setNewCover = async () => {
+        const imagePath = await getImageFilePath()
+        if (imagePath) {
+            setPlaylistsArray((prevPlaylists) => {
+                return prevPlaylists.map((playlist) => {
+                    if (playlist.id === targetPlaylist?.id) {
+                        return {
+                            ...playlist,
+                            coverImgPath: imagePath
+                        }
+                    } else {
+                        return playlist
+                    }
+                }) 
+            })
+        }
+    }
+
     return (
         <header className="flex gap-7">
-            <Image 
-                width={200}
-                height={200}
-                className="drop-shadow-xl rounded-lg" 
+            <img 
+                className="w-[200px] h-[200px] drop-shadow-xl rounded-lg object-cover cursor-pointer" 
                 src={targetPlaylist?.coverImgPath as string}
                 alt={`${targetPlaylist?.title} cover image`}
+                onClick={() => setNewCover()}
             />
             <div className="flex flex-col justify-between">
                 <PlaylistMeta
