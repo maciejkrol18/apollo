@@ -25,9 +25,7 @@ const PlaylistPage: React.FC = () => {
                 playlistsArray={playlistsArray}
                 setPlaylistsArray={setPlaylistsArray}
             />
-            <div className="flex flex-col mt-10">
-                <PlaylistSongs targetPlaylist={targetPlaylist}/>
-            </div>
+            <PlaylistSongs targetPlaylist={targetPlaylist}/>
         </div>
     )
 }
