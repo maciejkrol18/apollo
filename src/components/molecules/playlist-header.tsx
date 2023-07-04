@@ -3,6 +3,7 @@ import PlaylistMeta from "../atoms/playlist-meta"
 import PlaylistControls from "../atoms/playlist-controls";
 import { open } from '@tauri-apps/api/dialog';
 import { convertFileSrc } from '@tauri-apps/api/tauri';
+import { Pencil } from "lucide-react";
 
 interface PlaylistHeaderProps {
     playlistsArray: Array<PlaylistObject>
@@ -46,12 +47,20 @@ const PlaylistHeader: React.FC<PlaylistHeaderProps> = (
 
     return (
         <header className="flex gap-7">
-            <img 
-                className="w-[200px] h-[200px] drop-shadow-xl rounded-lg object-cover cursor-pointer" 
-                src={targetPlaylist?.coverImgPath as string}
-                alt={`${targetPlaylist?.title} cover image`}
-                onClick={() => setNewCover()}
-            />
+            <div className="group relative shadow-2xl rounded-lg">
+                <img 
+                    className="w-[200px] h-[200px] object-cover" 
+                    src={targetPlaylist?.coverImgPath as string}
+                    alt={`${targetPlaylist?.title} cover image`}
+                />
+                <div 
+                    className="group-hover:absolute bg-[#00000090] group-hover:flex items-center justify-center flex-col hidden inset-0 cursor-pointer"
+                    onClick={() => setNewCover()}
+                >
+                    <Pencil/>
+                    <p className="drop-shadow-2xl">Edit cover</p>
+                </div>
+            </div>
             <div className="flex flex-col justify-between">
                 <PlaylistMeta
                     title={targetPlaylist?.title}
