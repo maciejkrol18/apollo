@@ -1,19 +1,15 @@
 # Apollo
-Apollo is a desktop app for listening to locally downloaded music created using NextJS 13 App directory, Typescript, Tailwind and Tauri.
-
+Apollo is a desktop app for listening to locally downloaded music created using NextJS 13, Typescript, Tailwind and Tauri.  
 
 ## Available features
-- Creating, deleting and modifying playlists
+- Creating, deleting and modifying playlists (title and image cover)
 - Basic audio playback (pause/resume, next/previous, seek bar, volume control)
-
 
 ## Planned features
 - Audio visualizer
-- Modifying the playlist's image cover
-- Loading last played song on app launch
+- Loading last played song on app launch (been tricky to implement so far)
 - Displaying recently played playlists on the homepage
-- Performance optimizations
-
+- Performance optimizations (currently in react context hell)
 
 ## Getting started
 The code for the frontend is located in the "src" folder, and the code for the backend is in the "src-tauri" folder.
