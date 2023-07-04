@@ -22,7 +22,7 @@ const PlaylistsPanel: React.FC = () => {
         setPlaylistsArray((prevPlaylists) => {
             return [
                 {
-                    title: 'My playlist',
+                    title: `My playlist #${prevPlaylists.length + 1}`,
                     id: randomID,
                     creationDate: new Date(),
                     coverImgPath: PlaylistDefaultCover.src,
@@ -36,14 +36,14 @@ const PlaylistsPanel: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col grow gap-6 bg-[#161617] rounded-2xl p-4">
+        <div className="flex flex-col grow gap-6 bg-[#161617] max-h-[716px] rounded-2xl p-4">
             <div className="flex justify-between items-center">
             <p className="text-3xl font-semibold leading">Playlists</p>
                 <button onClick={() => createNewPlaylist()}>
                     <PlusCircle className="w-6 h-6"/>
                 </button>
             </div>
-            <div id="playlists" className="flex grow flex-col gap-4">
+            <div id="playlists" className="flex grow flex-col gap-4 overflow-y-auto px-2">
                 {
                     playlistsArray.length > 0 ?
                     playlistsArray.map((playlist,idx) => (
