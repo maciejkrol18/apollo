@@ -16,7 +16,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   const router = useRouter();
   return (
     <html lang="en">
-      <body className={` text-menus-foreground bg-body ${plusJakartaSans.className}`}>
+      <body className={`text-menus-foreground bg-body ${plusJakartaSans.className}`}>
         <Titlebar/>
         <TailwindIndicator/>
           <div 
