@@ -63,10 +63,7 @@ const PlaylistHeader: React.FC<PlaylistHeaderProps> = (
             </div>
             <div className="flex flex-col justify-between">
                 <PlaylistMeta
-                    title={targetPlaylist?.title}
-                    creationDate={targetPlaylist?.creationDate}
-                    songsAmount={targetPlaylist?.songs.length}
-                    id={targetPlaylist?.id}
+                    targetPlaylist={targetPlaylist}
                 />
                 <PlaylistControls
                     setPlaylistsArray={setPlaylistsArray}
