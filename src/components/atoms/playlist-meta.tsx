@@ -17,7 +17,6 @@ const PlaylistMeta: React.FC<PlaylistMetaProps> = ({targetPlaylist}) => {
         if (targetPlaylist) {
             let totalLength = 0
             targetPlaylist.songs.forEach((song) => {
-                console.log(typeof(song.lengthInSeconds), song.lengthInSeconds)
                 totalLength += Number(song.lengthInSeconds)
             })
             return dayjs.duration(totalLength, 'seconds').format('HH:mm:ss [in total]')

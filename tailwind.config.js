@@ -29,6 +29,9 @@ module.exports = {
           '60%': { height: '70%' },
           '80%': { height: '50%' }
         },
+      },
+      gridTemplateColumns: {
+        'table-row': '1fr 4fr 3fr 2fr'
       }
     },
   },

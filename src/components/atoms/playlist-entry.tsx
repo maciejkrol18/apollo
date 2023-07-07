@@ -32,8 +32,11 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
     },[currentSong,song,playlist])
 
     return (
-        <tr className="px-3 hover:bg-playlist-entry-highlight" onDoubleClick={() => handlePlayClick()}>
-            <td className="py-2 w-12">
+        <div 
+            className="hover:bg-playlist-entry-highlight rounded-md grid grid-cols-table-row" 
+            onDoubleClick={() => handlePlayClick()}
+        >
+            <div className="p-2">
                 <div className="group">
                     {currentSong === song && isAudioPlaying ?
                         <AudioWaves className="group-hover:hidden"/>
@@ -49,18 +52,18 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
                         }
                     </button>
                 </div>
-            </td>
-            <td className="py-2">
+            </div>
+            <div className="p-2 text-ellipsis overflow-hidden whitespace-nowrap">
                 {
                     currentSong === song ?
                     <p className="text-brand">{song.title}</p>
                     :
                     <p>{song.title}</p>
                 }
-            </td>
-            <td className="py-2">{formattedDateAdded}</td>
-            <td className="py-2">{formattedSeconds}</td>
-        </tr>
+            </div>
+            <div className="p-2">{formattedDateAdded}</div>
+            <div className="p-2">{formattedSeconds}</div>
+        </div>
     )
 }
 

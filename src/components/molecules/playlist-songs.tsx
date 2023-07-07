@@ -7,26 +7,22 @@ interface PlaylistSongsProps {
 
 const PlaylistSongs: React.FC<PlaylistSongsProps> = ({targetPlaylist}) => {
     return (
-        <div className="flex flex-col mt-10 border-t-[#67646420] border-t-2 pt-2">
-            <table className="text-left w-full">
-                <tbody>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Date added</th>
-                        <th>Length</th>
-                    </tr>
-                    {targetPlaylist?.songs.map((song, idx) => (
-                        <PlaylistEntry
-                            key={idx}
-                            song={song}
-                            playlist={targetPlaylist}
-                            idx={idx}
-                        />
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            <div className="flex flex-col mt-10 border-t-[#67646420] border-t-2 pt-2">
+                <div className='grid grid-cols-table-row mb-2'>
+                    <div className='px-2 font-semibold'>#</div>
+                    <div className='px-2 font-semibold'>Title</div>
+                    <div className='px-2 font-semibold'>Date added</div>
+                    <div className='px-2 font-semibold'>Length</div>
+                </div>
+                {targetPlaylist?.songs.map((song, idx) => (
+                    <PlaylistEntry
+                        key={idx}
+                        song={song}
+                        playlist={targetPlaylist}
+                        idx={idx}
+                    />
+                ))}
+            </div>
     )
 }
 
