@@ -32,7 +32,7 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
     },[currentSong,song,playlist])
 
     return (
-        <tr className="px-3 hover:bg-playlist-entry-highlight">
+        <tr className="px-3 hover:bg-playlist-entry-highlight" onDoubleClick={() => handlePlayClick()}>
             <td className="py-2 w-12">
                 <div className="group">
                     {currentSong === song && isAudioPlaying ?
