@@ -50,10 +50,10 @@ const PlaybackController: React.FC = () => {
 
     return (
         <div className="flex gap-5">
-            <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => prevSong()}>
+            <button onClick={() => prevSong()}>
                 <SkipBack className="w-6 h-6"/>
             </button>
-            <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => togglePlayback()}>
+            <button onClick={() => togglePlayback()}>
                 {
                     isAudioPlaying ?
                     <Pause className="w-6 h-6"/>
@@ -61,7 +61,7 @@ const PlaybackController: React.FC = () => {
                     <PlayIcon className="w-6 h-6"/>
                 }
             </button>
-            <button className="disabled:text-slate-700" disabled={!Boolean(currentSong)} onClick={() => nextSong()}>
+            <button onClick={() => nextSong()}>
                 <SkipForward className="w-6 h-6"/>
             </button>
         </div>
