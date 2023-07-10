@@ -31,7 +31,7 @@ module.exports = {
         },
       },
       gridTemplateColumns: {
-        'table-row': '1fr 4fr 3fr 2fr'
+        'table-row': '1fr 4fr 3fr 1fr'
       }
     },
   },
