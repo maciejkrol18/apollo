@@ -102,7 +102,7 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (targetPlaylist) {
+        if (targetPlaylist && playlistTitle) {
             setPlaylistsArray((prevPlaylists) => {
                 return prevPlaylists.map((playlist) => {
                     if (playlist.id === targetPlaylist.id) {
@@ -115,8 +115,8 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
                     }
                 })
             })
+            setIsModalOpen(prev => !prev)
         }
-        setIsModalOpen(prev => !prev)
     }
 
     const modalContent = (
@@ -126,11 +126,13 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
                 alt={`${targetPlaylist?.title} cover image`}
                 src={targetPlaylist?.coverImgPath as string}
             />
-            <form className="flex flex-col justify-between" onSubmit={(e) => handleFormSubmit(e)}>
-                <div className="flex flex-col gap-2">
+            <form className="flex flex-col justify-between grow" onSubmit={(e) => handleFormSubmit(e)}>
+                <div className="flex flex-col">
+                    <p>Playlist title</p>
+                    {!playlistTitle && <p className="my-1 text-red-600">The playlist title cannot be empty</p>}
                     <input 
                         type="text" 
-                        className="bg-menus-foreground-muted indent-1 py-2 rounded-xl"
+                        className="bg-menus-foreground-muted indent-1 py-2 rounded-md mt-2"
                         value={playlistTitle} 
                         onChange={(e) => setPlaylistTitle(e.target.value)} 
                     />
