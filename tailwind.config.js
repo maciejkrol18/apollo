@@ -14,7 +14,8 @@ module.exports = {
         "menus-foreground": "#F3F3F3",
         "menus-foreground-muted": "#676464",
         "menus-background-light": "#2D2D31",
-        "playlist-entry-highlight": "#2D2D3180"
+        "playlist-entry-highlight": "#2D2D3180",
+        "context-menu": "#2D2D3190",
       },
       animation: {
         barOne: 'audiobar 1.5s ease-in infinite',
