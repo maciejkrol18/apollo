@@ -144,7 +144,7 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({setPlaylistsArray, i
 
     return (
         <div className="flex gap-4 text-brand">
-            {targetPlaylist && targetPlaylist?.songs.length > 0 &&
+            {targetPlaylist && targetPlaylist.songs.length > 0 &&
                 <button onClick={() => playPlaylist()}>
                     {
                         targetPlaylist.id === currentPlaylist?.id && isAudioPlaying ?
