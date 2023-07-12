@@ -27,6 +27,4 @@ const Modal: React.FC<ModalProps> = ({title, content, toggleModal}) => {
     )
 }
 
-// <button onClick={() => toggleModal(prev => !prev)}>Close</button>
-
 export default Modal
