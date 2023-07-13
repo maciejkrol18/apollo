@@ -1,5 +1,5 @@
-import Navigation from "../molecules/navigation"
-import PlaylistsPanel from "../molecules/playlists-panel"
+import Navigation from "../molecules/Navigation"
+import PlaylistsPanel from "../molecules/PlaylistsPanel"
 
 const AsideBar: React.FC = () => {
     return (

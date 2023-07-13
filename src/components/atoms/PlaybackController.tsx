@@ -1,4 +1,4 @@
-import { AppAudioContext } from "@/contexts/app-audio-context"
+import { AppAudioContext } from "@/contexts/AppAudioContext"
 import { AppAudioContextValues } from "@/ts/interfaces"
 import { SkipBack, Pause, PlayIcon, SkipForward } from "lucide-react"
 import { useContext, useEffect } from "react"

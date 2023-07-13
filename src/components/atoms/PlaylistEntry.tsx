@@ -1,11 +1,11 @@
-import { AppAudioContext } from "@/contexts/app-audio-context";
+import { AppAudioContext } from "@/contexts/AppAudioContext";
 import { AppAudioContextValues, PlaylistObject, PlaylistSong } from "@/ts/interfaces";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration"
 import { useContext, useCallback, useState } from "react";
-import AudioWaves from "./audio-waves";
+import AudioWaves from "./AudioWaves";
 import { PauseIcon, Play, Trash } from "lucide-react";
-import ContextMenu from "./context-menu";
+import ContextMenu from "./ContextMenu";
 
 interface PlaylistEntryProps {
     song: PlaylistSong;

@@ -7,8 +7,8 @@ import { basename, resolveResource, audioDir } from '@tauri-apps/api/path';
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { invoke } from '@tauri-apps/api/tauri';
-import Modal from "./modal";
-import { AppAudioContext } from "@/contexts/app-audio-context";
+import Modal from "./Modal";
+import { AppAudioContext } from "@/contexts/AppAudioContext";
 
 interface PlaylistControlsProps {
     setPlaylistsArray: React.Dispatch<React.SetStateAction<PlaylistObject[]>>;

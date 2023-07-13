@@ -1,6 +1,6 @@
 import { PlaylistObject } from "@/ts/interfaces";
-import PlaylistMeta from "../atoms/playlist-meta"
-import PlaylistControls from "../atoms/playlist-controls";
+import PlaylistMeta from "../atoms/PlaylistMeta"
+import PlaylistControls from "../atoms/PlaylistControls";
 import { open } from '@tauri-apps/api/dialog';
 import { convertFileSrc } from '@tauri-apps/api/tauri';
 import { Pencil } from "lucide-react";

@@ -1,4 +1,4 @@
-import { AppAudioContext } from "@/contexts/app-audio-context";
+import { AppAudioContext } from "@/contexts/AppAudioContext";
 import { AppAudioContextValues } from "@/ts/interfaces";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration"

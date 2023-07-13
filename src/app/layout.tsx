@@ -1,14 +1,14 @@
 "use client";
 
-import TailwindIndicator from "@/components/atoms/tailwind-indicator";
-import Titlebar from "@/components/atoms/titlebar";
+import TailwindIndicator from "@/components/atoms/TailwindIndicator";
+import Titlebar from "@/components/atoms/Titlebar";
 import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { ArrowLeftCircle } from 'lucide-react';
-import AppAudio from "@/components/atoms/app-audio";
-import AsideBar from "@/components/organisms/aside-bar";
-import AudioBar from "@/components/molecules/audio-bar";
+import AppAudio from "@/components/atoms/AppAudio";
+import AsideBar from "@/components/organisms/AsideBar";
+import AudioBar from "@/components/molecules/AudioBar";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 

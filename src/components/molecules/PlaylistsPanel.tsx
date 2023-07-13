@@ -1,6 +1,6 @@
 "use client";
 
-import { AppAudioContext } from "@/contexts/app-audio-context";
+import { AppAudioContext } from "@/contexts/AppAudioContext";
 import { AppAudioContextValues } from "@/ts/interfaces";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/navigation";
@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation';
 import { PlusCircle } from "lucide-react"
 import { useContext } from "react";
 import PlaylistDefaultCover from "@/assets/default-playlist-cover.png"
-import PlaylistBox from "../atoms/playlist-box";
+import PlaylistBox from "../atoms/PlaylistBox";
 
 const PlaylistsPanel: React.FC = () => {
 

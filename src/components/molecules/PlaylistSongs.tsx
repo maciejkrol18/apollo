@@ -1,5 +1,5 @@
 import { PlaylistObject } from '@/ts/interfaces'
-import PlaylistEntry from "@/components/atoms/playlist-entry";
+import PlaylistEntry from "@/components/atoms/PlaylistEntry";
 
 interface PlaylistSongsProps {
     targetPlaylist: PlaylistObject | undefined;

@@ -1,9 +1,9 @@
-import { AppAudioContext } from "@/contexts/app-audio-context"
+import { AppAudioContext } from "@/contexts/AppAudioContext"
 import { AppAudioContextValues } from "@/ts/interfaces"
 import { useContext } from "react"
-import PlaybackController from "../atoms/playback-controller";
-import SeekBar from "../atoms/seek-bar";
-import VolumeController from "../atoms/volume-controller";
+import PlaybackController from "../atoms/PlaybackController";
+import SeekBar from "../atoms/SeekBar";
+import VolumeController from "../atoms/VolumeController";
 
 const AudioBar: React.FC = () => {
     const {currentSong} = useContext(AppAudioContext) as AppAudioContextValues

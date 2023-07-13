@@ -1,4 +1,4 @@
-import { AppAudioContext } from "@/contexts/app-audio-context";
+import { AppAudioContext } from "@/contexts/AppAudioContext";
 import { PlaylistObject, PlaylistSong } from "@/ts/interfaces";
 import { useState, useEffect, useRef, useCallback } from 'react';
 

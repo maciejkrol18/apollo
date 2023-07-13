@@ -1,8 +1,8 @@
 "use client";
 
-import PlaylistHeader from "@/components/molecules/playlist-header";
-import PlaylistSongs from "@/components/molecules/playlist-songs";
-import { AppAudioContext } from "@/contexts/app-audio-context";
+import PlaylistHeader from "@/components/molecules/PlaylistHeader";
+import PlaylistSongs from "@/components/molecules/PlaylistSongs";
+import { AppAudioContext } from "@/contexts/AppAudioContext";
 import { AppAudioContextValues } from "@/ts/interfaces";
 import { useParams } from 'next/navigation';
 import { useContext, useState, useEffect } from "react";

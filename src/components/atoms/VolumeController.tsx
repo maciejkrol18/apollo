@@ -1,4 +1,4 @@
-import { AppAudioContext } from "@/contexts/app-audio-context"
+import { AppAudioContext } from "@/contexts/AppAudioContext"
 import { AppAudioContextValues } from "@/ts/interfaces"
 import { Volume1, Volume2, VolumeX } from "lucide-react"
 import { useContext, useEffect, useRef, useCallback, useState } from "react"
