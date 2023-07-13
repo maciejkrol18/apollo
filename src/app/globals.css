@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-    @apply w-2;
+	@apply w-2;
 }
 
 ::-webkit-scrollbar-track {
-    @apply rounded-[100vmax] bg-[#1d1d1d];
+	@apply rounded-[100vmax] bg-[#1d1d1d];
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply rounded-[100vmax] bg-[#333137] my-4;
+	@apply rounded-[100vmax] bg-[#333137] my-4;
 }
