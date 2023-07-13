@@ -25,6 +25,28 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
     // Save playlist changes to local storage
     useEffect(() => {
         localStorage.setItem("apollo-playlists", JSON.stringify(playlistsArray))
+        /*
+            TODO: SHOULD BE REPLACED IN THE FUTURE WITH SOMETHING BETTER.
+
+            This setter ensures that the state of 'currentPlaylist'
+            stays up to date when modifying the current playlist.
+            Without this bit of code, any change to the current playlist, such as
+            editing the title or removing one of the songs wouldn't change the state
+            of 'currentPlaylist'. Because of this, for example, you could go back 
+            to a previous song which was deleted using the 'PlaybackController' as this component 
+            relies on the state of 'currentPlaylist' object, which was still the old version.
+
+            If currentPlaylist is set, we find the target playlist in the main
+            playlists array by ID, because it's updated version is located there.
+            If it's found, 'currentPlaylist' gets set to the found object, else it 
+            gets set back to null.
+        */
+        if (currentPlaylist) {
+            setCurrentPlaylist(() => {
+                const targetPlaylist = playlistsArray.find(obj => obj.id === currentPlaylist.id)
+                return targetPlaylist ? targetPlaylist : null
+            })
+        }
     },[playlistsArray])
 
     // Initialize Web Audio API components
@@ -70,7 +92,6 @@ const AppAudio = ({children}: {children: React.ReactNode}) => {
             audioElementRef.current.src = currentSong.convertedFilepath 
             setShouldAutoplay(true)
             setIsAudioPlaying(true)
-            console.log('Changed the song. Current src:', audioElementRef.current.src)
         }
     },[currentSong])
 
