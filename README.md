@@ -4,7 +4,10 @@ Apollo is a desktop app for listening to locally downloaded music created using 
 
 ## Available features
 
-- Creating, deleting and modifying playlists (title and image cover)
+- Playlist CRUD operations
+  - Creating and deleting playlists
+  - Changing playlist's cover image and title
+  - Adding and removing songs to/from the playlist
 - Basic audio playback (pause/resume, next/previous, seek bar, volume control)
 
 ## Planned features
