@@ -65,14 +65,9 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({song, playlist, idx}) => {
         }
         setPlaylistsArray((prevPlaylists) => {
             return prevPlaylists.map((obj) => {
-                if (obj.id === playlist.id) {
-                    return updatedPlaylist
-                } else {
-                    return obj
-                }
+                return obj.id === playlist.id ? updatedPlaylist : obj
             })
         })
-        console.log('removeSong', playlist)
         setCurrentPlaylist(updatedPlaylist)
         closeContextMenu()
     },[playlist,song])
