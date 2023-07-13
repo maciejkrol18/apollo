@@ -8,29 +8,29 @@ import { useParams } from "next/navigation";
 import { useContext, useState, useEffect } from "react";
 
 const PlaylistPage: React.FC = () => {
-	const { playlistsArray, setPlaylistsArray } = useContext(
-		AppAudioContext
-	) as AppAudioContextValues;
-	const { id } = useParams();
+  const { playlistsArray, setPlaylistsArray } = useContext(
+    AppAudioContext,
+  ) as AppAudioContextValues;
+  const { id } = useParams();
 
-	const [targetPlaylist, setTargetPlaylist] = useState(
-		playlistsArray.find((playlist) => playlist.id === id)
-	);
+  const [targetPlaylist, setTargetPlaylist] = useState(
+    playlistsArray.find((playlist) => playlist.id === id),
+  );
 
-	useEffect(() => {
-		setTargetPlaylist(playlistsArray.find((playlist) => playlist.id === id));
-	}, [playlistsArray, id]);
+  useEffect(() => {
+    setTargetPlaylist(playlistsArray.find((playlist) => playlist.id === id));
+  }, [playlistsArray, id]);
 
-	return (
-		<div className="grow">
-			<PlaylistHeader
-				targetPlaylist={targetPlaylist}
-				playlistsArray={playlistsArray}
-				setPlaylistsArray={setPlaylistsArray}
-			/>
-			<PlaylistSongs targetPlaylist={targetPlaylist} />
-		</div>
-	);
+  return (
+    <div className="grow">
+      <PlaylistHeader
+        targetPlaylist={targetPlaylist}
+        playlistsArray={playlistsArray}
+        setPlaylistsArray={setPlaylistsArray}
+      />
+      <PlaylistSongs targetPlaylist={targetPlaylist} />
+    </div>
+  );
 };
 
 export default PlaylistPage;
