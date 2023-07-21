@@ -58,13 +58,9 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({
   const [playlistTitle, setPlaylistTitle] = useState<string | undefined>(
     targetPlaylist?.title,
   );
-  const {
-    setCurrentSong,
-    currentPlaylist,
-    setCurrentPlaylist,
-    togglePlayback,
-    isAudioPlaying,
-  } = useContext(AppAudioContext) as AppAudioContextValues;
+  const { setCurrentSong, currentPlaylist, togglePlayback, isAudioPlaying } = useContext(
+    AppAudioContext,
+  ) as AppAudioContextValues;
 
   useEffect(() => {
     if (targetPlaylist) {
@@ -107,7 +103,13 @@ const PlaylistControls: React.FC<PlaylistControlsProps> = ({
         togglePlayback();
       } else {
         console.log("changing current playlist");
-        setCurrentPlaylist(targetPlaylist);
+        setPlaylistsArray((prev) =>
+          prev.map((obj) => {
+            return obj.id === targetPlaylist.id
+              ? { ...obj, currentPlaylist: true }
+              : { ...obj, currentPlaylist: false };
+          }),
+        );
         setCurrentSong(targetPlaylist.songs[0]);
       }
     }

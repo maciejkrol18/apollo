@@ -27,7 +27,6 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({ song, playlist, idx }) =>
     isAudioPlaying,
     currentSong,
     setCurrentSong,
-    setCurrentPlaylist,
     setPlaylistsArray,
   } = useContext(AppAudioContext) as AppAudioContextValues;
 
@@ -42,7 +41,13 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({ song, playlist, idx }) =>
       togglePlayback();
     } else {
       setCurrentSong(song);
-      setCurrentPlaylist(playlist);
+      setPlaylistsArray((prev) =>
+        prev.map((obj) => {
+          return obj.id === playlist.id
+            ? { ...obj, currentPlaylist: true }
+            : { ...obj, currentPlaylist: false };
+        }),
+      );
     }
   }, [currentSong, song, playlist]);
 
@@ -56,25 +61,16 @@ const PlaylistEntry: React.FC<PlaylistEntryProps> = ({ song, playlist, idx }) =>
   const closeContextMenu = () => setContextMenu(initialContextMenu);
 
   const removeSong = useCallback(() => {
-    /*
-      This approach of creating a new variable for the
-      updated playlist is required because of the fact
-      that if you remove a song while it is playing and
-      click the "next song" button, you can then
-      go back to the deleted song because the state of 
-      all playlists update except for the currentPlaylist object
-      which the PlaybackControls component relies on
-    */
-    const updatedPlaylist = {
-      ...playlist,
-      songs: playlist.songs.filter((filteredSong) => filteredSong.id !== song.id),
-    };
-    setPlaylistsArray((prevPlaylists) => {
-      return prevPlaylists.map((obj) => {
-        return obj.id === playlist.id ? updatedPlaylist : obj;
-      });
-    });
-    setCurrentPlaylist(updatedPlaylist);
+    setPlaylistsArray((prev) =>
+      prev.map((obj) => {
+        return obj.id === playlist.id
+          ? {
+              ...obj,
+              songs: playlist.songs.filter((filteredSong) => filteredSong.id !== song.id),
+            }
+          : obj;
+      }),
+    );
     closeContextMenu();
   }, [playlist, song]);
 

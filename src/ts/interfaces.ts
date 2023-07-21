@@ -8,7 +8,6 @@ export interface AppAudioContextValues {
   currentSong: PlaylistSong | null;
   setCurrentSong: React.Dispatch<React.SetStateAction<PlaylistSong | null>>;
   currentPlaylist: PlaylistObject | null;
-  setCurrentPlaylist: React.Dispatch<React.SetStateAction<PlaylistObject | null>>;
   audioElementRef: MutableRefObject<HTMLAudioElement | null>;
   audioCurrentTime: number | undefined;
   audioGainRef: MutableRefObject<GainNode | null>;
@@ -29,4 +28,5 @@ export interface PlaylistObject {
   coverImgPath: string;
   userSongOrder: Array<string>;
   songs: Array<PlaylistSong>;
+  currentPlaylist: boolean;
 }
