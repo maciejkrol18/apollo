@@ -22,7 +22,7 @@ const PlaylistPage: React.FC = () => {
   }, [playlistsArray, id]);
 
   return (
-    <div className="grow">
+    <div className="flex flex-col grow">
       <PlaylistHeader
         targetPlaylist={targetPlaylist}
         playlistsArray={playlistsArray}
