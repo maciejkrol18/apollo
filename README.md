@@ -18,7 +18,7 @@ Releases will be added in the future once i'm satisfied with the app state and t
 
 # Getting started
 
-The code for the frontend is located in the "src" folder, and the code for the backend is in the "src-tauri" folder.
+The code for the frontend is located in the "src" folder, and the code for the backend is in the "src-tauri" folder. The majority of the code is written within the frontend with the backend being used for smaller things and for building the desktop app (currently e.g. getting the length of an audio file) so it's kind of underused
 
 To launch a development version of the app run
 ```
