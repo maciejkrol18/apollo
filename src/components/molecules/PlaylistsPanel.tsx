@@ -28,6 +28,7 @@ const PlaylistsPanel: React.FC = () => {
           creationDate: new Date(),
           coverImgPath: PlaylistDefaultCover.src,
           userSongOrder: [],
+          currentPlaylist: false,
           songs: [],
         },
         ...prevPlaylists,
